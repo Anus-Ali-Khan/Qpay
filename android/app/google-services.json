@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "454524443044",
+    "project_id": "qpay-e378e",
+    "storage_bucket": "qpay-e378e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454524443044:android:e98bfed9f39c30f6098931",
+        "android_client_info": {
+          "package_name": "com.example.qr_code"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454524443044-gi5k274aj1ep9kj56jresf9oao8fe25a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkzpf05P_gsSSOIKt2HC6J5jQbW8oP7_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454524443044-gi5k274aj1ep9kj56jresf9oao8fe25a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code/constants/constants.dart';
 import 'package:qr_code/screens/login_screen.dart';
+import 'package:qr_code/services/auth_service.dart';
 import 'package:qr_code/widgets/custom_textfield.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -9,6 +10,8 @@ class SignupScreen extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +93,12 @@ class SignupScreen extends StatelessWidget {
               Center(
                 child: CustomButton(
                   title: "Sign Up",
-                  onPressed: () {},
+                  onPressed: () {
+                    authService.signUpWithEmail(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                    );
+                  },
                   width: MediaQuery.of(context).size.width * 0.5,
                 ),
               ),

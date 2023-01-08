@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:qr_code/services/auth_service.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  ProfileScreen({Key? key}) : super(key: key);
+
+  AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Profile Screen"),
+        child: ElevatedButton(
+          onPressed: () {
+            authService.signOut();
+          },
+          child: Text("Sign Out"),
+        ),
       ),
     );
   }

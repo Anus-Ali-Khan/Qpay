@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code/constants/constants.dart';
+import 'package:qr_code/screens/signup_screen.dart';
 
 import '../widgets/custom_textfield.dart';
 
@@ -62,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                   controller: passwordController,
                   obscureText: true,
                   hintText: "*****",
-                  icon: Icons.lock,
+                  icon: Icons.lock_outline,
                 ),
               ),
 
@@ -86,6 +87,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 5.0),
                     GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen()));
+                      },
                       child: const Text(
                         "Sign Up",
                         style: TextStyle(color: white, fontSize: 12.0),

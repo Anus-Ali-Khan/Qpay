@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_code/navbar_screens/chat_screen.dart';
 import 'package:qr_code/navbar_screens/home_screen.dart';
 import 'package:qr_code/navbar_screens/profile_screen.dart';
@@ -6,6 +7,11 @@ import 'package:qr_code/navbar_screens/transaction_screen.dart';
 import 'package:qr_code/screens/qr_screen.dart';
 import 'package:qr_code/screens/transaction_details_screen.dart';
 import '../constants/constants.dart';
+import 'package:qr_code/providers/user_provider.dart';
+
+import '../models/user_model.dart';
+import '../services/auth_service.dart';
+import '../services/user_service.dart';
 
 class Navbar extends StatefulWidget {
   Navbar({Key? key}) : super(key: key);
@@ -19,10 +25,25 @@ class _NavbarState extends State<Navbar> {
 
   List screens = [
     HomeScreen(),
-    TransactionDetailsScreen(),
+    TransactionScreen(),
     ChatScreen(),
     ProfileScreen(),
   ];
+
+  UserProvider userProvider = UserProvider();
+  UserService userService = UserService();
+  AuthService authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      userProvider = Provider.of<UserProvider>(context, listen: false);
+      userService.getUser(authService.getCurrentUser().uid).then((value) {
+        userProvider.setUser(UserModel.fromJson(value.data() as Map<String, dynamic>));
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

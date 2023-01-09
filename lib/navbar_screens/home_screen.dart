@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_code/services/auth_service.dart';
 
 import '../constants/constants.dart';
+import '../providers/user_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -21,10 +23,11 @@ class HomeScreen extends StatelessWidget {
   ];
 
   AuthService authService = AuthService();
+  UserProvider userProvider = UserProvider();
 
   @override
   Widget build(BuildContext context) {
-    print("Current User: ${authService.getCurrentUser().uid}");
+    userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
       backgroundColor: white,
@@ -48,8 +51,8 @@ class HomeScreen extends StatelessWidget {
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 "Hello",
                                 style: TextStyle(
                                   color: white,
@@ -57,8 +60,8 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "Muzammil Ali Khan",
-                                style: TextStyle(
+                                userProvider.user!.userName,
+                                style: const TextStyle(
                                   color: white,
                                   fontSize: 26.0,
                                   fontWeight: FontWeight.w700,
@@ -113,9 +116,9 @@ class HomeScreen extends StatelessWidget {
                               "Account Balance",
                               style: TextStyle(color: white, fontWeight: FontWeight.w500, fontSize: 17.0),
                             ),
-                            const Text(
-                              "Rs. ${"5862.22"}",
-                              style: TextStyle(color: white, fontWeight: FontWeight.w800, fontSize: 29.0),
+                            Text(
+                              "Rs. ${userProvider.user!.balanceAmount}",
+                              style: const TextStyle(color: white, fontWeight: FontWeight.w800, fontSize: 29.0),
                             ),
                             const SizedBox(height: 10.0),
                             const Divider(color: white),

@@ -86,6 +86,25 @@ class SignupScreen extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
                   child: Text(
+                    "User Name",
+                    style: TextStyle(color: white, fontSize: 16.0),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: CustomTextField(
+                    hintText: "John Doe",
+                    controller: nameController,
+                    icon: Icons.person_outline,
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+
+                const SizedBox(height: 20.0),
+
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+                  child: Text(
                     "Email",
                     style: TextStyle(color: white, fontSize: 16.0),
                   ),

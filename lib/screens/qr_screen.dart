@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:qr_code/screens/transaction_details_screen.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 // class QRScreen extends StatefulWidget {
@@ -98,6 +99,7 @@ class _QRScreenState extends State<QRScreen> {
       setState(() {
         result = scanData;
       });
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TransactionDetailsScreen()));
     });
     controller.pauseCamera();
     controller.resumeCamera();
@@ -116,7 +118,6 @@ class _QRScreenState extends State<QRScreen> {
       child: Scaffold(
         body: Column(
           children: [
-            Text("QR Code Screen"),
             Expanded(
               flex: 5,
               child: QRView(
@@ -131,10 +132,14 @@ class _QRScreenState extends State<QRScreen> {
                 ),
               ),
             ),
-            Expanded(
+            const Expanded(
               flex: 1,
               child: Center(
-                child: (result != null) ? Text('Barcode Type: ${(result!.format)}  Data: ${result!.code}') : const Text('Scan a code'),
+                child: Text(
+                  "Scan a code",
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
+                ),
+                // child: (result != null) ? Text('Barcode Type: ${(result!.format)}  Data: ${result!.code}') : const Text('Scan a code'),
               ),
             )
           ],

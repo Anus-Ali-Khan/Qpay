@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               return Navbar();
             } else {
+              // return Navbar();
               return LoginScreen();
             }
           },

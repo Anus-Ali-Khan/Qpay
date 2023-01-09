@@ -3,6 +3,8 @@ import 'package:qr_code/navbar_screens/chat_screen.dart';
 import 'package:qr_code/navbar_screens/home_screen.dart';
 import 'package:qr_code/navbar_screens/profile_screen.dart';
 import 'package:qr_code/navbar_screens/transaction_screen.dart';
+import 'package:qr_code/screens/qr_screen.dart';
+import 'package:qr_code/screens/transaction_details_screen.dart';
 import '../constants/constants.dart';
 
 class Navbar extends StatefulWidget {
@@ -15,7 +17,12 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int currentIndex = 0;
 
-  List screens = [HomeScreen(), TransactionScreen(), ChatScreen(), ProfileScreen()];
+  List screens = [
+    HomeScreen(),
+    TransactionDetailsScreen(),
+    ChatScreen(),
+    ProfileScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +84,9 @@ class _NavbarState extends State<Navbar> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => QRScreen()));
+          },
           backgroundColor: secondaryColor,
           child: const Icon(Icons.qr_code_scanner),
         ),

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:qr_code/constants/constants.dart';
 import 'package:qr_code/models/user_model.dart';
+import 'package:qr_code/navbar_screens/navbar.dart';
 import 'package:qr_code/screens/login_screen.dart';
 import 'package:qr_code/services/auth_service.dart';
 import 'package:qr_code/services/user_service.dart';
 import 'package:qr_code/widgets/custom_textfield.dart';
 
+import '../widgets/custom_button.dart';
 import '../widgets/custom_snackbar.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -45,6 +47,7 @@ class SignupScreen extends StatelessWidget {
             );
             userService.createUser(user).then((value) {
               ScaffoldMessenger.of(context).showSnackBar(snackBar(value["message"]));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Navbar()));
             });
           } catch (e) {
             ScaffoldMessenger.of(context).showSnackBar(snackBar(e.toString()));
@@ -79,24 +82,6 @@ class SignupScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 50.0),
-
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
-                  child: Text(
-                    "Username",
-                    style: TextStyle(color: white, fontSize: 16.0),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: CustomTextField(
-                    hintText: "John Doe",
-                    controller: nameController,
-                    icon: Icons.person_outline_outlined,
-                  ),
-                ),
-
-                const SizedBox(height: 20.0),
 
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),

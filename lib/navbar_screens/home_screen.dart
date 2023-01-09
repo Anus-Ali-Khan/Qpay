@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:qr_code/services/auth_service.dart';
 
 import '../constants/constants.dart';
 
@@ -19,8 +20,12 @@ class HomeScreen extends StatelessWidget {
     "assets/images/promotion4.jpg",
   ];
 
+  AuthService authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
+    print("Current User: ${authService.getCurrentUser().uid}");
+
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(

@@ -8,18 +8,21 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.icon,
     this.obscureText,
+    this.keyboardType,
   }) : super(key: key);
 
   TextEditingController controller;
   String hintText;
   IconData icon;
   bool? obscureText;
+  TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       obscureText: obscureText ?? false,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         prefixIcon: Icon(
           icon,

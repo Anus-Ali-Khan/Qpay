@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code/constants/constants.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   CustomTextField({
     Key? key,
     required this.hintText,
@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
     required this.icon,
     this.obscureText,
     this.keyboardType,
+    this.initialValue,
   }) : super(key: key);
 
   TextEditingController controller;
@@ -16,20 +17,35 @@ class CustomTextField extends StatelessWidget {
   IconData icon;
   bool? obscureText;
   TextInputType? keyboardType;
+  String? initialValue;
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (widget.initialValue != null) {
+      widget.controller.text = widget.initialValue!;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: controller,
-      obscureText: obscureText ?? false,
-      keyboardType: keyboardType,
+      controller: widget.controller,
+      obscureText: widget.obscureText ?? false,
+      keyboardType: widget.keyboardType,
       decoration: InputDecoration(
         prefixIcon: Icon(
-          icon,
+          widget.icon,
           color: blackColor,
           size: 25.0,
         ),
-        hintText: hintText,
+        hintText: widget.hintText,
         hintStyle: const TextStyle(
           color: greyTextFieldText,
           fontSize: 16.0,

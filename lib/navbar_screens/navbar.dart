@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:qr_code/navbar_screens/chat_screen.dart';
 import 'package:qr_code/navbar_screens/home_screen.dart';
 import 'package:qr_code/navbar_screens/profile_screen.dart';
-import 'package:qr_code/navbar_screens/transaction_screen.dart';
+import 'package:qr_code/navbar_screens/transaction_history_screen.dart';
 import 'package:qr_code/screens/qr_screen.dart';
 import 'package:qr_code/screens/transaction_details_screen.dart';
 import '../constants/constants.dart';
@@ -25,7 +25,7 @@ class _NavbarState extends State<Navbar> {
 
   List screens = [
     HomeScreen(),
-    TransactionScreen(),
+    TransactionHistoryScreen(),
     ChatScreen(),
     ProfileScreen(),
   ];

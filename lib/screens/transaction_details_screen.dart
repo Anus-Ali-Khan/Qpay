@@ -85,7 +85,7 @@ class TransactionDetailsScreen extends StatelessWidget {
                           timestamp: DateTime.now(),
                           senderId: userProvider.user!.userId,
                         );
-                        userService.updateUser(
+                        userService.updateUserAmount(
                           userProvider.user!.userId,
                           userProvider.user!.balanceAmount - int.parse(amountController.text),
                         );

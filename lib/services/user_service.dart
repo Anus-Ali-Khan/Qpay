@@ -18,7 +18,14 @@ class UserService {
     return await FirebaseFirestore.instance.collection("users").doc(userId).get();
   }
 
-  updateUser(String userId, int newAmount) async {
+  updateUserAmount(String userId, int newAmount) async {
     await FirebaseFirestore.instance.collection("users").doc(userId).update({"balanceAmount": newAmount});
+  }
+
+  Future updateUserNameAndNumber(String userId, String newName, String newNumber) async {
+    await FirebaseFirestore.instance.collection("users").doc(userId).update({
+      "userName": newName,
+      "phoneNumber": newNumber,
+    });
   }
 }

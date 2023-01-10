@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_code/navbar_screens/chat_screen.dart';
+import 'package:qr_code/navbar_screens/inbox_screen.dart';
 import 'package:qr_code/navbar_screens/home_screen.dart';
 import 'package:qr_code/navbar_screens/profile_screen.dart';
 import 'package:qr_code/navbar_screens/transaction_history_screen.dart';
@@ -26,7 +27,7 @@ class _NavbarState extends State<Navbar> {
   List screens = [
     HomeScreen(),
     TransactionHistoryScreen(),
-    ChatScreen(),
+    InboxScreen(),
     ProfileScreen(),
   ];
 
@@ -38,9 +39,11 @@ class _NavbarState extends State<Navbar> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.loaderOverlay.show();
       userProvider = Provider.of<UserProvider>(context, listen: false);
       userService.getUser(authService.getCurrentUser().uid).then((value) {
         userProvider.setUser(UserModel.fromJson(value.data() as Map<String, dynamic>));
+        context.loaderOverlay.hide();
       });
     });
   }
@@ -48,71 +51,73 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: BottomAppBar(
-          color: primaryColor,
-          shape: const CircularNotchedRectangle(),
-          notchMargin: 5,
-          child: Row(
-            // mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(
-                icon: const Icon(
-                  Icons.home,
-                  color: Colors.white,
+      child: LoaderOverlay(
+        child: Scaffold(
+          bottomNavigationBar: BottomAppBar(
+            color: primaryColor,
+            shape: const CircularNotchedRectangle(),
+            notchMargin: 5,
+            child: Row(
+              // mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                IconButton(
+                  icon: const Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      currentIndex = 0;
+                    });
+                  },
                 ),
-                onPressed: () {
-                  setState(() {
-                    currentIndex = 0;
-                  });
-                },
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.stacked_bar_chart,
-                  color: Colors.white,
+                IconButton(
+                  icon: const Icon(
+                    Icons.stacked_bar_chart,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      currentIndex = 1;
+                    });
+                  },
                 ),
-                onPressed: () {
-                  setState(() {
-                    currentIndex = 1;
-                  });
-                },
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.chat,
-                  color: Colors.white,
+                IconButton(
+                  icon: const Icon(
+                    Icons.chat,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      currentIndex = 2;
+                    });
+                  },
                 ),
-                onPressed: () {
-                  setState(() {
-                    currentIndex = 2;
-                  });
-                },
-              ),
-              IconButton(
-                icon: const Icon(
-                  Icons.person,
-                  color: Colors.white,
+                IconButton(
+                  icon: const Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      currentIndex = 3;
+                    });
+                  },
                 ),
-                onPressed: () {
-                  setState(() {
-                    currentIndex = 3;
-                  });
-                },
-              ),
-            ],
+              ],
+            ),
           ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => QRScreen()));
+            },
+            backgroundColor: secondaryColor,
+            child: const Icon(Icons.qr_code_scanner),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          body: screens[currentIndex],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => QRScreen()));
-          },
-          backgroundColor: secondaryColor,
-          child: const Icon(Icons.qr_code_scanner),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        body: screens[currentIndex],
       ),
     );
   }

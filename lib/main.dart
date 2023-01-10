@@ -5,9 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code/navbar_screens/navbar.dart';
 import 'package:qr_code/providers/user_provider.dart';
-import 'package:qr_code/screens/button_file.dart';
-import 'package:qr_code/screens/qr_screen.dart';
 import 'package:qr_code/screens/login_screen.dart';
+import 'package:qr_code/screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,14 +30,15 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        debugShowCheckedModeBanner: false,
         home: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Navbar();
+              return SplashScreen(screen: Navbar());
             } else {
               // return Navbar();
-              return LoginScreen();
+              return SplashScreen(screen: LoginScreen());
             }
           },
         ),

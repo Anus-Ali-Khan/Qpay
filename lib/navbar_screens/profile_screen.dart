@@ -60,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(15.0),
                 child: const Text(
                   "My Profile",
-                  style: TextStyle(color: white, fontSize: 28.0, fontWeight: FontWeight.w600),
+                  style: TextStyle(color: white, fontSize: 25.0, fontWeight: FontWeight.w600),
                 ),
               ),
               const SizedBox(height: 20.0),

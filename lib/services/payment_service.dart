@@ -13,4 +13,8 @@ class PaymentService {
       return {"success": false, "message": e.message.toString()};
     }
   }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getUserPayments(String userId) async {
+    return await FirebaseFirestore.instance.collection("payments").where("senderId", isEqualTo: userId).orderBy("timestamp", descending: true).get();
+  }
 }

@@ -80,14 +80,14 @@ class TransactionDetailsScreen extends StatelessWidget {
                         context.loaderOverlay.show();
                         PaymentModel paymentModel = PaymentModel(
                           receiverEmail: receiverController.text,
-                          amount: int.parse(amountController.text),
+                          amount: double.parse(amountController.text),
                           reason: reasonController.text,
                           timestamp: DateTime.now(),
                           senderId: userProvider.user!.userId,
                         );
                         userService.updateUserAmount(
                           userProvider.user!.userId,
-                          userProvider.user!.balanceAmount - int.parse(amountController.text),
+                          userProvider.user!.balanceAmount - double.parse(amountController.text),
                         );
                         paymentService.makePayment(paymentModel).then((value) {
                           context.loaderOverlay.hide();

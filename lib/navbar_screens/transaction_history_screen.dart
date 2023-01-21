@@ -36,8 +36,10 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         // setState(() {
         transactions.add(PaymentModel.fromJson(e.data()));
         // });
+        setState(() {});
       }
     });
+    print(transactions);
   }
 
   @override

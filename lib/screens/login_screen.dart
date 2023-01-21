@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:qr_code/constants/constants.dart';
+import 'package:qr_code/navbar_screens/navbar.dart';
 import 'package:qr_code/screens/signup_screen.dart';
 import 'package:qr_code/services/auth_service.dart';
 import 'package:qr_code/widgets/custom_snackbar.dart';
@@ -18,6 +19,9 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    emailController.text = "muzammil@gmail.com";
+    passwordController.text = "12345678";
+
     return SafeArea(
       child: LoaderOverlay(
         child: Scaffold(
@@ -89,8 +93,12 @@ class LoginScreen extends StatelessWidget {
                       )
                           .then((value) {
                         context.loaderOverlay.hide();
+
                         if (!value["success"]) {
                           ScaffoldMessenger.of(context).showSnackBar(snackBar(value["message"]));
+                        } else {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Navbar()));
+                          // print("Sign in error: ${value["message"]}");
                         }
                       });
                     },

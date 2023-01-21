@@ -47,7 +47,7 @@ class SignupScreen extends StatelessWidget {
             );
             userService.createUser(user).then((value) {
               ScaffoldMessenger.of(context).showSnackBar(snackBar(value["message"]));
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Navbar()));
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Navbar()));
             });
           } catch (e) {
             ScaffoldMessenger.of(context).showSnackBar(snackBar(e.toString()));

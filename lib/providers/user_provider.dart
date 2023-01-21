@@ -8,4 +8,10 @@ class UserProvider with ChangeNotifier {
     this.user = user;
     notifyListeners();
   }
+
+  deleteUser() {
+    UserModel? newUser;
+    user = newUser;
+    notifyListeners();
+  }
 }

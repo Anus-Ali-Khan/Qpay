@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code/services/auth_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../constants/constants.dart';
 import '../providers/user_provider.dart';
@@ -54,8 +55,9 @@ class HomeScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "Hello",
+                                Text(
+                                  AppLocalizations.of(context)!.helloWorld,
+                                  // "Hello",
                                   style: TextStyle(
                                     color: white,
                                     fontSize: 18.0,

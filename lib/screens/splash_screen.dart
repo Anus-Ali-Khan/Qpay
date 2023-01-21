@@ -8,9 +8,12 @@ import 'package:qr_code/screens/login_screen.dart';
 import '../constants/constants.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({Key? key, required this.screen}) : super(key: key);
+  SplashScreen({
+    Key? key,
+    // required this.screen,
+  }) : super(key: key);
 
-  Widget screen;
+  // Widget screen;
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -21,7 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => widget.screen));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Navbar()));
+      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
     });
   }
 

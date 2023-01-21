@@ -43,6 +43,7 @@ class ProfileScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         authService.signOut();
+                        userProvider.deleteUser();
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                       },
                       child: const Icon(
@@ -74,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: CustomTextField(
-                  initialValue: userProvider.user!.userName,
+                  initialValue: userProvider.user?.userName,
                   hintText: "John Doe",
                   controller: nameController,
                   icon: Icons.person_outline,
@@ -92,7 +93,7 @@ class ProfileScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: CustomTextField(
-                  initialValue: userProvider.user!.phoneNumber,
+                  initialValue: userProvider.user?.phoneNumber,
                   hintText: "325431",
                   controller: phoneNumberController,
                   icon: Icons.phone_outlined,

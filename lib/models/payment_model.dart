@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PaymentModel {
   String senderId;
-  int amount;
+  double amount;
   String receiverEmail;
   String reason;
   DateTime timestamp;
@@ -18,7 +18,7 @@ class PaymentModel {
   factory PaymentModel.fromJson(Map<String, dynamic> json) {
     return PaymentModel(
       senderId: json["senderId"] as String,
-      amount: json["amount"] as int,
+      amount: json["amount"] as double,
       receiverEmail: json["receiverEmail"] as String,
       reason: json["reason"] as String,
       timestamp: (json["timestamp"] as Timestamp).toDate(),

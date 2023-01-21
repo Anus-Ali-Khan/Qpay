@@ -35,16 +35,27 @@ class _NavbarState extends State<Navbar> {
   UserService userService = UserService();
   AuthService authService = AuthService();
 
+  Map<String, dynamic> sampleUser = {
+    "balanceAmount": 56389.56,
+    "email": "muzammil@gmail.com",
+    "phoneNumber": "064319466",
+    "userId": "7uF4xbavNSUUJ46xnmpP3nTeFwF2",
+    "userName": "Muzammil Ali Khan"
+  };
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.loaderOverlay.show();
       userProvider = Provider.of<UserProvider>(context, listen: false);
-      userService.getUser(authService.getCurrentUser().uid).then((value) {
-        userProvider.setUser(UserModel.fromJson(value.data() as Map<String, dynamic>));
-        context.loaderOverlay.hide();
-      });
+      // userService.getUser(authService.getCurrentUser().uid).then((value) {
+      //   userProvider.setUser(UserModel.fromJson(value.data() as Map<String, dynamic>));
+      //   context.loaderOverlay.hide();
+      // });
+      // TODO: Remove this code and uncomment above code
+      userProvider.setUser(UserModel.fromJson(sampleUser));
+      context.loaderOverlay.hide();
     });
   }
 

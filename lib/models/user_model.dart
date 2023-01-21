@@ -3,7 +3,7 @@ class UserModel {
   String userName;
   String email;
   String phoneNumber;
-  int balanceAmount;
+  double balanceAmount;
 
   UserModel({
     required this.userId,
@@ -19,7 +19,7 @@ class UserModel {
       userName: json["userName"] as String,
       email: json["email"] as String,
       phoneNumber: json["phoneNumber"] as String,
-      balanceAmount: json["balanceAmount"] as int,
+      balanceAmount: json["balanceAmount"] as double,
     );
   }
 

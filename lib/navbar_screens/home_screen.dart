@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     userProvider = Provider.of<UserProvider>(context);
     list = [
-      {"title": AppLocalizations.of(context)!.receive, "image": "assets/images/deposit.png", "navigateTo": AskMoneyScreen()},
+      {"title": AppLocalizations.of(context)!.askAFriend, "image": "assets/images/deposit.png", "navigateTo": AskMoneyScreen()},
       {"title": AppLocalizations.of(context)!.transfer, "image": "assets/images/exchange.png", "navigateTo": TransferMoneyScreen()},
       {"title": AppLocalizations.of(context)!.withdraw, "image": "assets/images/withdraw.png", "navigateTo": AskMoneyScreen()}
     ];

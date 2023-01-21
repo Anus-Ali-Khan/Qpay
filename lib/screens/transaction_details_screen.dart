@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code/widgets/custom_textfield.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../models/payment_model.dart';
 import '../navbar_screens/navbar.dart';
 import '../providers/user_provider.dart';
@@ -99,7 +99,7 @@ class TransactionDetailsScreen extends StatelessWidget {
                           }
                         });
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar("Please fill out all the fields first"));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar(AppLocalizations.of(context)!.fillAllFieldsFirst));
                       }
                     },
                   )

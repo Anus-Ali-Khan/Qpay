@@ -1,26 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AskAFriendModel {
-  String requesterId;
-  String requesterEmail;
+class TransferMoneyModel {
+  String senderId;
+  String senderEmail;
   String friendEmail;
   double amount;
   String message;
   DateTime timestamp;
 
-  AskAFriendModel({
-    required this.requesterId,
-    required this.requesterEmail,
+  TransferMoneyModel({
+    required this.senderId,
+    required this.senderEmail,
     required this.friendEmail,
     required this.amount,
     required this.message,
     required this.timestamp,
   });
 
-  factory AskAFriendModel.fromJson(Map<String, dynamic> json) {
-    return AskAFriendModel(
-      requesterId: json["requesterId"] as String,
-      requesterEmail: json["requesterEmail"] as String,
+  factory TransferMoneyModel.fromJson(Map<String, dynamic> json) {
+    return TransferMoneyModel(
+      senderId: json["senderId"] as String,
+      senderEmail: json["senderEmail"] as String,
       friendEmail: json["friendEmail"] as String,
       amount: json["amount"] as double,
       message: json["message"] as String,
@@ -30,8 +30,8 @@ class AskAFriendModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "requesterId": requesterId,
-      "requesterEmail": requesterEmail,
+      "requesterId": senderId,
+      "requesterEmail": senderEmail,
       "friendEmail": friendEmail,
       "amount": amount,
       "message": message,

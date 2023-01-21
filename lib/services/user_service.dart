@@ -18,7 +18,11 @@ class UserService {
     return await FirebaseFirestore.instance.collection("users").doc(userId).get();
   }
 
-  updateUserAmount(String userId, double newAmount) async {
+  Future<QuerySnapshot<Map<String, dynamic>>> getUserByEmail(String email) async {
+    return await FirebaseFirestore.instance.collection("users").where("email", isEqualTo: email).get();
+  }
+
+  Future<void> updateUserAmount(String userId, double newAmount) async {
     await FirebaseFirestore.instance.collection("users").doc(userId).update({"balanceAmount": newAmount});
   }
 

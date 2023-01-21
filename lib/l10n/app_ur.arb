@@ -11,5 +11,6 @@
     "sendRequest": "درخواست بھیجیں",
     "transferMoney": "پیسے کی منتقلی",
     "transferMoneyDescription": "یہاں سے آپ اپنے دوستوں کو رقم منتقل کر سکتے ہیں۔",
-    "transfer": "منتقلی"
+    "transfer": "منتقلی",
+    "fillAllFieldsFirst": "براہ کرم پہلے تمام فیلڈز کو پُر کریں۔"
 }

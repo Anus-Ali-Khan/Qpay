@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:qr_code/constants/constants.dart';
@@ -8,7 +7,7 @@ import 'package:qr_code/screens/login_screen.dart';
 import 'package:qr_code/services/auth_service.dart';
 import 'package:qr_code/services/user_service.dart';
 import 'package:qr_code/widgets/custom_textfield.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_snackbar.dart';
 
@@ -56,7 +55,7 @@ class SignupScreen extends StatelessWidget {
         }
       });
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(snackBar("Please fill out all the fields first"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar(AppLocalizations.of(context)!.fillAllFieldsFirst));
     }
   }
 

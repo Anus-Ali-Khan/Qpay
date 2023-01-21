@@ -12,5 +12,6 @@
     "sendRequest": "Enviar petición",
     "transferMoney": "Transferir dinero",
     "transferMoneyDescription": "Desde aquí puedes transferir dinero a tus amigas",
-    "transfer": "Transferir"
+    "transfer": "Transferir",
+    "fillAllFieldsFirst": "Por favor complete todos los campos primero"
 }

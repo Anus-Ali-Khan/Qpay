@@ -24,5 +24,6 @@
   "sendRequest": "Send Request",
   "transferMoney": "Transfer Money",
   "transferMoneyDescription": "From here you can transfer money to your friends",
-  "transfer": "Transfer"
+  "transfer": "Transfer",
+  "fillAllFieldsFirst": "Please fill out all the fields first"
 }

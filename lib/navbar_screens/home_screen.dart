@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_code/screens/transfer_money_screen.dart';
 import 'package:qr_code/services/auth_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../constants/constants.dart';
 import '../providers/user_provider.dart';
+import '../screens/ask_money_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  List<Map<String, String>> list = [
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<Map<String, dynamic>> list = [
     {"title": "Deposit", "image": "assets/images/deposit.png"},
     {"title": "Transfer", "image": "assets/images/exchange.png"},
     {"title": "Withdraw", "image": "assets/images/withdraw.png"}
@@ -25,11 +30,24 @@ class HomeScreen extends StatelessWidget {
   ];
 
   AuthService authService = AuthService();
+
   UserProvider userProvider = UserProvider();
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {});
+  // }
 
   @override
   Widget build(BuildContext context) {
     userProvider = Provider.of<UserProvider>(context);
+    list = [
+      {"title": AppLocalizations.of(context)!.receive, "image": "assets/images/deposit.png", "navigateTo": AskMoneyScreen()},
+      {"title": AppLocalizations.of(context)!.transfer, "image": "assets/images/exchange.png", "navigateTo": TransferMoneyScreen()},
+      {"title": AppLocalizations.of(context)!.withdraw, "image": "assets/images/withdraw.png", "navigateTo": AskMoneyScreen()}
+    ];
 
     return LoaderOverlay(
       child: Scaffold(
@@ -55,9 +73,9 @@ class HomeScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  AppLocalizations.of(context)!.helloWorld,
-                                  // "Hello",
+                                const Text(
+                                  // AppLocalizations.of(context)!.helloWorld,
+                                  "Hello",
                                   style: TextStyle(
                                     color: white,
                                     fontSize: 18.0,
@@ -131,25 +149,30 @@ class HomeScreen extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: list.map((item) {
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.all(10.0),
-                                        decoration: BoxDecoration(
-                                          color: primaryColor,
-                                          borderRadius: BorderRadius.circular(50.0),
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => item["navigateTo"]));
+                                    },
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(10.0),
+                                          decoration: BoxDecoration(
+                                            color: primaryColor,
+                                            borderRadius: BorderRadius.circular(50.0),
+                                          ),
+                                          child: Image.asset(item["image"].toString()),
                                         ),
-                                        child: Image.asset(item["image"].toString()),
-                                      ),
-                                      const SizedBox(height: 5.0),
-                                      Text(
-                                        item["title"].toString(),
-                                        style: const TextStyle(color: white, fontSize: 10.0, fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
+                                        const SizedBox(height: 5.0),
+                                        Text(
+                                          item["title"].toString(),
+                                          style: const TextStyle(color: white, fontSize: 10.0, fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 }).toList(),
                               )

@@ -1,0 +1,15 @@
+{
+    "helloWorld": "ہیلو ورلڈ",
+    "receive": "وصول کریں",
+    "transfer": "منتقلی",
+    "withdraw": "واپس لے لو",
+    "askAFriend": "کسی دوست سے مدد طلب کریں۔",
+    "qPay": "QPay",
+    "askAFriendDescription": "یہاں سے آپ اپنے دوست سے پیسے مانگ سکتے ہیں۔",
+    "enterFriendEmail": "دوست کا ای میل درج کریں۔",
+    "amount": "رقم",
+    "sendRequest": "درخواست بھیجیں",
+    "transferMoney": "پیسے کی منتقلی",
+    "transferMoneyDescription": "یہاں سے آپ اپنے دوستوں کو رقم منتقل کر سکتے ہیں۔",
+    "transfer": "منتقلی"
+}

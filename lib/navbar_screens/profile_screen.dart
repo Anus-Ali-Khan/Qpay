@@ -3,7 +3,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code/services/auth_service.dart';
 import 'package:qr_code/constants/constants.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../models/user_model.dart';
 import '../providers/user_provider.dart';
 import '../screens/login_screen.dart';
@@ -59,17 +59,17 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 color: secondaryColor,
                 padding: const EdgeInsets.all(15.0),
-                child: const Text(
-                  "My Profile",
-                  style: TextStyle(color: white, fontSize: 25.0, fontWeight: FontWeight.w600),
+                child: Text(
+                  AppLocalizations.of(context)!.myProfile,
+                  style: const TextStyle(color: white, fontSize: 25.0, fontWeight: FontWeight.w600),
                 ),
               ),
               const SizedBox(height: 20.0),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
                 child: Text(
-                  "User Name",
-                  style: TextStyle(fontSize: 16.0),
+                  AppLocalizations.of(context)!.userName,
+                  style: const TextStyle(fontSize: 16.0),
                 ),
               ),
               Padding(
@@ -83,11 +83,11 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20.0),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
                 child: Text(
-                  "Phone Number",
-                  style: TextStyle(fontSize: 16.0),
+                  AppLocalizations.of(context)!.phoneNumber,
+                  style: const TextStyle(fontSize: 16.0),
                 ),
               ),
               Padding(
@@ -104,7 +104,7 @@ class ProfileScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: CustomButton(
-                  title: 'Update Profile',
+                  title: AppLocalizations.of(context)!.updateProfile,
                   onPressed: () async {
                     context.loaderOverlay.show();
 
@@ -119,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
                       userService.getUser(userProvider.user!.userId).then((value) {
                         userProvider.setUser(UserModel.fromJson(value.data() as Map<String, dynamic>));
                       });
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar("Profile updated"));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar(AppLocalizations.of(context)!.profileUpdated));
                     });
                   },
                 ),

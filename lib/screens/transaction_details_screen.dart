@@ -36,17 +36,17 @@ class TransactionDetailsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Transaction Details",
-                    style: TextStyle(fontSize: 29.0, fontWeight: FontWeight.w600),
+                  Text(
+                    AppLocalizations.of(context)!.transactionDetails,
+                    style: const TextStyle(fontSize: 29.0, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 80.0),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
                     child: Text(
-                      "Receiver Email",
-                      style: TextStyle(fontSize: 16.0),
+                      AppLocalizations.of(context)!.receiverEmail,
+                      style: const TextStyle(fontSize: 16.0),
                     ),
                   ),
                   CustomTextField(
@@ -55,26 +55,30 @@ class TransactionDetailsScreen extends StatelessWidget {
                     icon: Icons.person_outline_outlined,
                   ),
                   const SizedBox(height: 20.0),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
                     child: Text(
-                      "Amount to pay",
-                      style: TextStyle(fontSize: 16.0),
+                      AppLocalizations.of(context)!.amountToPay,
+                      style: const TextStyle(fontSize: 16.0),
                     ),
                   ),
                   CustomTextField(hintText: "50.0", controller: amountController, icon: Icons.monetization_on_outlined),
                   const SizedBox(height: 20.0),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
                     child: Text(
-                      "Reason for Payment",
-                      style: TextStyle(fontSize: 16.0),
+                      AppLocalizations.of(context)!.reasonForPayment,
+                      style: const TextStyle(fontSize: 16.0),
                     ),
                   ),
-                  CustomTextField(hintText: "Rent, groceries, etc", controller: reasonController, icon: Icons.description_outlined),
+                  CustomTextField(
+                    hintText: AppLocalizations.of(context)!.rentGroceries,
+                    controller: reasonController,
+                    icon: Icons.description_outlined,
+                  ),
                   const SizedBox(height: 100.0),
                   CustomButton(
-                    title: "Submit",
+                    title: AppLocalizations.of(context)!.submit,
                     onPressed: () {
                       if (receiverController.text != "" && amountController.text != "" && reasonController.text != "") {
                         context.loaderOverlay.show();
@@ -92,7 +96,7 @@ class TransactionDetailsScreen extends StatelessWidget {
                         paymentService.makePayment(paymentModel).then((value) {
                           context.loaderOverlay.hide();
                           if (value["success"]) {
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar("Payment made successfully"));
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar(value["message"]));
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Navbar()));
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(snackBar(value["message"]));

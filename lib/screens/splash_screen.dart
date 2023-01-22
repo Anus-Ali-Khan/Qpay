@@ -1,10 +1,7 @@
 import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code/navbar_screens/navbar.dart';
-import 'package:qr_code/screens/login_screen.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../constants/constants.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -39,9 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset("assets/images/logo.png"),
             const SizedBox(height: 10.0),
-            const Text(
-              "Hassle free transactions",
-              style: TextStyle(color: greyBackground),
+            Text(
+              AppLocalizations.of(context)!.hassleFreeTransactions,
+              style: const TextStyle(color: greyBackground),
             )
           ],
         ),

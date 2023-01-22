@@ -13,8 +13,13 @@ class TransferMoneyService {
     }
   }
 
-  Future<QuerySnapshot<Map<String, dynamic>>> getTransfers(String userId) async {
-    return await FirebaseFirestore.instance.collection("transfers").where("senderId", isEqualTo: userId).get();
-    // return await FirebaseFirestore.instance.collection("requests").where("requesterId", isEqualTo: userId).orderBy("timestamp", descending: true).get();
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getTransfers(String userId, String userEmail) async {
+    QuerySnapshot<Map<String, dynamic>> transfersMade =
+        await FirebaseFirestore.instance.collection("transfers").where("senderId", isEqualTo: userId).get();
+
+    QuerySnapshot<Map<String, dynamic>> transfersReceived =
+        await FirebaseFirestore.instance.collection("transfers").where("friendEmail", isEqualTo: userEmail).get();
+
+    return [...transfersMade.docs, ...transfersReceived.docs];
   }
 }

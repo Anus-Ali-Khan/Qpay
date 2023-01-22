@@ -30,8 +30,8 @@ class TransferMoneyModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "requesterId": senderId,
-      "requesterEmail": senderEmail,
+      "senderId": senderId,
+      "senderEmail": senderEmail,
       "friendEmail": friendEmail,
       "amount": amount,
       "message": message,

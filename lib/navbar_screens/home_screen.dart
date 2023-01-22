@@ -73,10 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  // AppLocalizations.of(context)!.helloWorld,
-                                  "Hello",
-                                  style: TextStyle(
+                                Text(
+                                  AppLocalizations.of(context)!.hello,
+                                  style: const TextStyle(
                                     color: white,
                                     fontSize: 18.0,
                                   ),
@@ -134,12 +133,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "Account Balance",
-                                style: TextStyle(color: white, fontWeight: FontWeight.w500, fontSize: 17.0),
+                              Text(
+                                AppLocalizations.of(context)!.accountBalance,
+                                style: const TextStyle(color: white, fontWeight: FontWeight.w500, fontSize: 17.0),
                               ),
                               Text(
-                                "Rs. ${userProvider.user?.balanceAmount ?? ""}",
+                                "${AppLocalizations.of(context)!.rs} ${userProvider.user?.balanceAmount ?? ""}",
                                 style: const TextStyle(color: white, fontWeight: FontWeight.w800, fontSize: 29.0),
                               ),
                               const SizedBox(height: 10.0),
@@ -202,9 +201,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const SizedBox(width: 5.0),
-                        const Text(
-                          "Promotions",
-                          style: TextStyle(
+                        Text(
+                          AppLocalizations.of(context)!.promotions,
+                          style: const TextStyle(
                             color: primaryColor,
                             fontWeight: FontWeight.w500,
                             fontSize: 12.0,
@@ -254,9 +253,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const SizedBox(width: 5.0),
-                        const Text(
-                          "Rewards",
-                          style: TextStyle(
+                        Text(
+                          AppLocalizations.of(context)!.rewards,
+                          style: const TextStyle(
                             color: primaryColor,
                             fontWeight: FontWeight.w500,
                             fontSize: 12.0,

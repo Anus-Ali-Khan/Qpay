@@ -4,6 +4,7 @@ import '../constants/constants.dart';
 import '../models/payment_model.dart';
 import '../services/auth_service.dart';
 import '../services/payment_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {
   TransactionHistoryScreen({Key? key}) : super(key: key);
@@ -39,7 +40,6 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         setState(() {});
       }
     });
-    print(transactions);
   }
 
   @override
@@ -62,18 +62,18 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
               width: double.infinity,
               color: secondaryColor,
               padding: const EdgeInsets.all(15.0),
-              child: const Text(
-                "Transaction History",
-                style: TextStyle(color: white, fontSize: 25.0, fontWeight: FontWeight.w600),
+              child: Text(
+                AppLocalizations.of(context)!.transactionHistory,
+                style: const TextStyle(color: white, fontSize: 25.0, fontWeight: FontWeight.w600),
               ),
             ),
             transactions.isEmpty
                 ? SizedBox(
                     height: MediaQuery.of(context).size.height * 0.7,
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        "No transactions",
-                        style: TextStyle(color: blackColor),
+                        AppLocalizations.of(context)!.noTransactions,
+                        style: const TextStyle(color: blackColor),
                       ),
                     ),
                   )
@@ -103,7 +103,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "To: ${currentTransaction.receiverEmail}",
+                                          "${AppLocalizations.of(context)!.to}: ${currentTransaction.receiverEmail}",
                                           style: const TextStyle(fontSize: 16.0),
                                         ),
                                         const SizedBox(height: 2.0),
@@ -116,7 +116,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                   ),
                                   const SizedBox(width: 10.0),
                                   Text(
-                                    "Rs. ${currentTransaction.amount}",
+                                    "${AppLocalizations.of(context)!.rs} ${currentTransaction.amount}",
                                     style: const TextStyle(color: Colors.green, fontSize: 16.0, fontWeight: FontWeight.bold),
                                   ),
                                 ],

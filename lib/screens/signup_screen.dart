@@ -75,18 +75,18 @@ class SignupScreen extends StatelessWidget {
                   child: Image.asset("assets/images/logo.png", alignment: Alignment.topLeft),
                 ),
                 // const SizedBox(height: 100.0),
-                const Text(
-                  "Sign Up",
-                  style: TextStyle(color: white, fontSize: 52.0),
+                Text(
+                  AppLocalizations.of(context)!.signUp,
+                  style: const TextStyle(color: white, fontSize: 52.0),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 50.0),
 
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
                   child: Text(
-                    "User Name",
-                    style: TextStyle(color: white, fontSize: 16.0),
+                    AppLocalizations.of(context)!.userName,
+                    style: const TextStyle(color: white, fontSize: 16.0),
                   ),
                 ),
                 Padding(
@@ -101,11 +101,11 @@ class SignupScreen extends StatelessWidget {
 
                 const SizedBox(height: 20.0),
 
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
                   child: Text(
-                    "Email",
-                    style: TextStyle(color: white, fontSize: 16.0),
+                    AppLocalizations.of(context)!.email,
+                    style: const TextStyle(color: white, fontSize: 16.0),
                   ),
                 ),
                 Padding(
@@ -120,11 +120,11 @@ class SignupScreen extends StatelessWidget {
 
                 const SizedBox(height: 20.0),
 
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
                   child: Text(
-                    "Password",
-                    style: TextStyle(color: white, fontSize: 16.0),
+                    AppLocalizations.of(context)!.password,
+                    style: const TextStyle(color: white, fontSize: 16.0),
                   ),
                 ),
                 Padding(
@@ -139,11 +139,11 @@ class SignupScreen extends StatelessWidget {
 
                 const SizedBox(height: 20.0),
 
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
                   child: Text(
-                    "Phone Number",
-                    style: TextStyle(color: white, fontSize: 16.0),
+                    AppLocalizations.of(context)!.phoneNumber,
+                    style: const TextStyle(color: white, fontSize: 16.0),
                   ),
                 ),
                 Padding(
@@ -160,7 +160,7 @@ class SignupScreen extends StatelessWidget {
 
                 Center(
                   child: CustomButton(
-                    title: "Sign Up",
+                    title: AppLocalizations.of(context)!.signUp,
                     onPressed: () {
                       handleLogin(context);
                     },
@@ -172,18 +172,18 @@ class SignupScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text(
-                        "Already have an account?",
-                        style: TextStyle(color: white, fontSize: 12.0),
+                      Text(
+                        AppLocalizations.of(context)!.alreadyHaveAnAccount,
+                        style: const TextStyle(color: white, fontSize: 12.0),
                       ),
                       const SizedBox(width: 5.0),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
                         },
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(color: white, fontSize: 12.0),
+                        child: Text(
+                          AppLocalizations.of(context)!.login,
+                          style: const TextStyle(color: white, fontSize: 12.0),
                         ),
                       ),
                     ],

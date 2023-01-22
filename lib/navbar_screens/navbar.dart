@@ -6,10 +6,8 @@ import 'package:qr_code/navbar_screens/home_screen.dart';
 import 'package:qr_code/navbar_screens/profile_screen.dart';
 import 'package:qr_code/navbar_screens/transaction_history_screen.dart';
 import 'package:qr_code/screens/qr_screen.dart';
-import 'package:qr_code/screens/transaction_details_screen.dart';
 import '../constants/constants.dart';
 import 'package:qr_code/providers/user_provider.dart';
-
 import '../models/user_model.dart';
 import '../services/auth_service.dart';
 import '../services/user_service.dart';

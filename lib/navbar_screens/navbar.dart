@@ -32,14 +32,14 @@ class _NavbarState extends State<Navbar> {
   UserProvider userProvider = UserProvider();
   UserService userService = UserService();
   AuthService authService = AuthService();
-
-  Map<String, dynamic> sampleUser = {
-    "balanceAmount": 56389.56,
-    "email": "muzammil@gmail.com",
-    "phoneNumber": "064319466",
-    "userId": "7uF4xbavNSUUJ46xnmpP3nTeFwF2",
-    "userName": "Muzammil Ali Khan"
-  };
+  //
+  // Map<String, dynamic> sampleUser = {
+  //   "balanceAmount": 56389.56,
+  //   "email": "muzammil@gmail.com",
+  //   "phoneNumber": "064319466",
+  //   "userId": "7uF4xbavNSUUJ46xnmpP3nTeFwF2",
+  //   "userName": "Muzammil Ali Khan"
+  // };
 
   @override
   void initState() {
@@ -47,12 +47,10 @@ class _NavbarState extends State<Navbar> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.loaderOverlay.show();
       userProvider = Provider.of<UserProvider>(context, listen: false);
-      // userService.getUser(authService.getCurrentUser().uid).then((value) {
-      //   userProvider.setUser(UserModel.fromJson(value.data() as Map<String, dynamic>));
-      //   context.loaderOverlay.hide();
-      // });
-      // TODO: Remove this code and uncomment above code
-      userProvider.setUser(UserModel.fromJson(sampleUser));
+      userService.getUser(authService.getCurrentUser().uid).then((value) {
+        userProvider.setUser(UserModel.fromJson(value.data() as Map<String, dynamic>));
+        context.loaderOverlay.hide();
+      });
       context.loaderOverlay.hide();
     });
   }
@@ -71,9 +69,9 @@ class _NavbarState extends State<Navbar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 IconButton(
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.home,
-                    color: Colors.white,
+                    color: currentIndex == 0 ? secondaryColor : white,
                   ),
                   onPressed: () {
                     setState(() {
@@ -82,9 +80,9 @@ class _NavbarState extends State<Navbar> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.stacked_bar_chart,
-                    color: Colors.white,
+                    color: currentIndex == 1 ? secondaryColor : white,
                   ),
                   onPressed: () {
                     setState(() {
@@ -93,9 +91,9 @@ class _NavbarState extends State<Navbar> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.chat,
-                    color: Colors.white,
+                    color: currentIndex == 2 ? secondaryColor : white,
                   ),
                   onPressed: () {
                     setState(() {
@@ -104,9 +102,9 @@ class _NavbarState extends State<Navbar> {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.person,
-                    color: Colors.white,
+                    color: currentIndex == 3 ? secondaryColor : white,
                   ),
                   onPressed: () {
                     setState(() {

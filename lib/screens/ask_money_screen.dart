@@ -40,7 +40,8 @@ class AskMoneyScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Image.asset(
-                  "assets/images/givemoney.png",
+                  "assets/images/askAFriend-bg.png",
+                  // "assets/images/givemoney.png",
                   height: height * 0.3,
                 ),
                 SizedBox(height: height * 0.03),

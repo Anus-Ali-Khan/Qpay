@@ -93,12 +93,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: const TextStyle(color: white),
                       iconEnabledColor: white,
                       dropdownColor: primaryColor,
+                      isDense: true,
                       items: const [
                         DropdownMenuItem(value: Locale("en"), child: Text("English")),
-                        DropdownMenuItem(value: Locale("es"), child: Text("Spanish")),
+                        DropdownMenuItem(value: Locale("es"), child: Text("Spanish (español)")),
                         DropdownMenuItem(
                           value: Locale.fromSubtags(languageCode: "ur", countryCode: "PK"),
-                          child: Text("Urdu"),
+                          child: Text("اردو"),
                         ),
                       ],
                       onChanged: (Locale? locale) {

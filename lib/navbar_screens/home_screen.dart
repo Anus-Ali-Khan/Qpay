@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: const TextStyle(color: white, fontWeight: FontWeight.w500, fontSize: 17.0),
                               ),
                               Text(
-                                "${AppLocalizations.of(context)!.rs} ${userProvider.user?.balanceAmount ?? ""}",
+                                "${AppLocalizations.of(context)!.rs} ${userProvider.user?.balanceAmount.toStringAsFixed(2) ?? ""}",
                                 style: const TextStyle(color: white, fontWeight: FontWeight.w800, fontSize: 29.0),
                               ),
                               const SizedBox(height: 10.0),

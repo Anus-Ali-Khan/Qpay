@@ -19,9 +19,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    emailController.text = "muzammil@gmail.com";
-    passwordController.text = "12345678";
-
     return SafeArea(
       child: LoaderOverlay(
         child: Scaffold(

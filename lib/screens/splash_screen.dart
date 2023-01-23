@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:qr_code/navbar_screens/navbar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../constants/constants.dart';
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({
@@ -21,8 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Navbar()));
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
     });
   }
 

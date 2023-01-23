@@ -80,7 +80,7 @@ class AskMoneyScreen extends StatelessWidget {
                           requesterEmail: userProvider!.user!.email,
                           friendEmail: emailController.text,
                           amount: double.parse(amountController.text),
-                          message: "${userProvider!.user!.email} asked you to send some money",
+                          message: "${userProvider!.user!.email} asked ${emailController.text} to send some money",
                           timestamp: DateTime.now(),
                         );
 

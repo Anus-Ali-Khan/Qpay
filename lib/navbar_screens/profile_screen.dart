@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_code/providers/locale_provider.dart';
 import 'package:qr_code/services/auth_service.dart';
 import 'package:qr_code/constants/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,15 +13,35 @@ import '../widgets/custom_button.dart';
 import '../widgets/custom_snackbar.dart';
 import '../widgets/custom_textfield.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key? key}) : super(key: key);
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
 
   AuthService authService = AuthService();
-  UserProvider userProvider = UserProvider();
   UserService userService = UserService();
+
+  UserProvider userProvider = UserProvider();
+  LocaleProvider localeProvider = LocaleProvider();
+
+  Locale? selectedLanguageLocale;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+      setState(() {
+        selectedLanguageLocale = localeProvider.getLocale();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +80,35 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 color: secondaryColor,
                 padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  AppLocalizations.of(context)!.myProfile,
-                  style: const TextStyle(color: white, fontSize: 25.0, fontWeight: FontWeight.w600),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.myProfile,
+                      style: const TextStyle(color: white, fontSize: 25.0, fontWeight: FontWeight.w600),
+                    ),
+                    DropdownButton<Locale>(
+                      value: selectedLanguageLocale,
+                      style: const TextStyle(color: white),
+                      iconEnabledColor: white,
+                      dropdownColor: primaryColor,
+                      items: const [
+                        DropdownMenuItem(value: Locale("en"), child: Text("English")),
+                        DropdownMenuItem(value: Locale("es"), child: Text("Spanish")),
+                        DropdownMenuItem(
+                          value: Locale.fromSubtags(languageCode: "ur", countryCode: "PK"),
+                          child: Text("Urdu"),
+                        ),
+                      ],
+                      onChanged: (Locale? locale) {
+                        localeProvider.setLocale(locale!);
+                        setState(() {
+                          selectedLanguageLocale = locale;
+                        });
+                      },
+                    )
+                  ],
                 ),
               ),
               const SizedBox(height: 20.0),

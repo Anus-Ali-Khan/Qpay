@@ -34,21 +34,21 @@ class _InboxScreenState extends State<InboxScreen> {
       askAFriendService.getRequests(userProvider.user!.userId, userProvider.user!.email).then((value) {
         for (var e in value) {
           requests.add(AskAFriendModel.fromJson(e.data()));
-          setState(() {});
         }
+        setState(() {});
       });
       transferMoneyService.getTransfers(userProvider.user!.userId, userProvider.user!.email).then((value) {
         for (var e in value) {
           transfers.add(TransferMoneyModel.fromJson(e.data()));
-          setState(() {});
         }
+        setState(() {});
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    requestsAndTransfers = [...transfers, ...transfers];
+    requestsAndTransfers = [...transfers, ...requests];
     requestsAndTransfers.sort((a, b) => a.timestamp.compareTo(b.timestamp));
 
     return Scaffold(
